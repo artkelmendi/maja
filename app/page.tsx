@@ -41,6 +41,33 @@ const experiences = [
   },
 ];
 
+const dayChapters = [
+  {
+    index: "01",
+    kicker: "Mëngjesi",
+    title: "Zgjohuni mbi horizontin.",
+    text: "Kafe e ngrohtë, bukë nga furra dhe ajri i freskët i bjeshkës — një fillim dite që nuk kërkon nxitim.",
+    image: "/images/maja-food.webp",
+    alt: "Mëngjes i freskët tradicional i shtruar në një tryezë druri",
+  },
+  {
+    index: "02",
+    kicker: "Pasditja",
+    title: "Uluni pranë tryezës.",
+    text: "Shije vendi, biseda të gjata dhe një pamje që ndryshon me dritën. Këtu, dreka bëhet pjesë e udhëtimit.",
+    image: "/images/maja-hero.webp",
+    alt: "Tarraca e Majës me pamje të gjerë mbi malet e Strellcit",
+  },
+  {
+    index: "03",
+    kicker: "Mbrëmja",
+    title: "Qëndroni deri në mëngjes.",
+    text: "Kur perëndon dielli, mali hesht. Një dhomë e ngrohtë ju pret që qetësia të zgjasë edhe pak.",
+    image: "/images/maja-room.webp",
+    alt: "Dhomë malore e ngrohtë me dru, gur dhe pamje nga natyra",
+  },
+];
+
 function BrandMark({ light = false }: { light?: boolean }) {
   return (
     <a className={`brand ${light ? "brand--light" : ""}`} href="#fillimi" aria-label="Maja e Strellcit — fillimi">
@@ -225,6 +252,61 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="day-story" id="historia" aria-labelledby="day-story-title">
+        <div className="day-story__visual" aria-hidden="true">
+          {dayChapters.map((chapter, index) => (
+            <div
+              className={`day-story__panel${index === 0 ? " is-active" : ""}`}
+              data-story-panel={index}
+              key={chapter.index}
+            >
+              <img src={chapter.image} alt="" width="1536" height="1024" loading="lazy" />
+            </div>
+          ))}
+          <div className="day-story__visual-shade" />
+          <div className="day-story__visual-meta">
+            <span>Një ditë në Majë</span>
+            <span className="day-story__counter">
+              <b data-story-current>01</b>
+              <i />
+              <b>03</b>
+            </span>
+          </div>
+        </div>
+
+        <div className="day-story__chapters">
+          <header className="day-story__heading">
+            <p className="eyebrow eyebrow--light">Nga agimi deri te yjet</p>
+            <h2 id="day-story-title">Një ditë që ecën me ritmin e malit.</h2>
+          </header>
+          {dayChapters.map((chapter, index) => (
+            <article
+              className={`day-story__chapter${index === 0 ? " is-active" : ""}`}
+              data-story-step={index}
+              aria-current={index === 0 ? "step" : undefined}
+              key={chapter.index}
+            >
+              <img
+                className="day-story__chapter-image"
+                src={chapter.image}
+                alt={chapter.alt}
+                width="1122"
+                height="1402"
+                loading="lazy"
+              />
+              <div className="day-story__chapter-copy">
+                <div className="day-story__chapter-topline">
+                  <span>{chapter.index}</span>
+                  <span>{chapter.kicker}</span>
+                </div>
+                <h3>{chapter.title}</h3>
+                <p>{chapter.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="experiences section-shell" id="pervoja" data-reveal>
         <div className="section-heading">
           <div>
@@ -308,12 +390,70 @@ export default function Home() {
         </div>
       </section>
 
-      <footer>
-        <BrandMark light />
-        <p>Restorant &amp; akomodim në Strellc, Kosovë.</p>
-        <div>
-          <a href="#fillimi">Kthehu lart ↑</a>
+      <footer className="site-footer">
+        <div className="site-footer__cta" data-reveal>
+          <div>
+            <p className="eyebrow eyebrow--light">Rezervoni momentin tuaj</p>
+            <h2>Maja ju pret.</h2>
+          </div>
+          <a className="site-footer__booking" href={`tel:${reservationPhone}`}>
+            <span>
+              <small>Na telefononi</small>
+              <strong>+383 (0)49 840 222</strong>
+            </span>
+            <b aria-hidden="true">↗</b>
+          </a>
+        </div>
+
+        <div className="site-footer__grid">
+          <div className="site-footer__identity">
+            <BrandMark light />
+            <p>Restorant, natyrë dhe akomodim mbi Strellc.</p>
+          </div>
+          <nav className="site-footer__nav" aria-label="Lidhjet në fund të faqes">
+            <p>Eksploroni</p>
+            <a href="#restoranti">Restoranti</a>
+            <a href="#akomodimi">Akomodimi</a>
+            <a href="#historia">Një ditë në Majë</a>
+            <a href="#pervoja">Përvoja</a>
+          </nav>
+          <address className="site-footer__address">
+            <p>Na gjeni</p>
+            <span>Strellc, Kosovë</span>
+            <a href={`tel:${reservationPhone}`}>+383 (0)49 840 222</a>
+            <a
+              href="https://maps.app.goo.gl/UHRxLucJr8S1TVqx8?g_st=com.google.maps.preview.copy"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Hap lokacionin ↗
+            </a>
+          </address>
+          <div className="site-footer__social">
+            <p>Na ndiqni</p>
+            <a
+              href="https://www.instagram.com/restaurant.majaestrellcit/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Instagram ↗
+            </a>
+            <span>@restaurant.majaestrellcit</span>
+          </div>
+        </div>
+
+        <div className="site-footer__wordmark" aria-hidden="true">
+          MAJA E STRELLCIT
+        </div>
+
+        <div className="site-footer__bottom">
           <span>© 2026 Maja e Strellcit</span>
+          <span>Me rrënjë në Strellc, Kosovë</span>
+          <a className="site-footer__top" href="#fillimi" aria-label="Kthehu në fillim">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 19V5M6.5 10.5 12 5l5.5 5.5" />
+            </svg>
+          </a>
         </div>
       </footer>
     </main>

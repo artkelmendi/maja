@@ -36,6 +36,10 @@ test("server-renders the Albanian restaurant site", async () => {
   assert.match(html, /\+383 \(0\)49 840 222/);
   assert.match(html, /class="page-intro"/);
   assert.match(html, /data-reveal/);
+  assert.match(html, /data-story-step="0"/);
+  assert.match(html, /data-story-panel="2"/);
+  assert.match(html, /class="site-footer"/);
+  assert.match(html, /Maja ju pret\./);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|react-loading-skeleton/i);
 });
 
@@ -56,8 +60,11 @@ test("creates a self-contained GitHub Pages export", async () => {
   assert.match(css, /intro-first/);
   assert.match(css, /motion-enabled/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
+  assert.match(css, /day-story__visual/);
+  assert.match(css, /position:\s*sticky/);
   assert.match(motion, /IntersectionObserver/);
   assert.match(motion, /prefers-reduced-motion/);
+  assert.match(motion, /data-story-panel/);
 
   await Promise.all([
     access(new URL("../docs/.nojekyll", import.meta.url)),
