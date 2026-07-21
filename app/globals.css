@@ -389,6 +389,7 @@ html.intro-first.page-loaded .page-intro {
 .manifesto h2,
 .food-story h2,
 .stay h2,
+.story-gate h2,
 .day-story h2,
 .day-story h3,
 .section-heading h2,
@@ -785,6 +786,69 @@ html.intro-first.page-loaded .page-intro {
   align-self: flex-start;
 }
 
+.story-gate {
+  align-items: start;
+  background: var(--paper);
+  display: grid;
+  gap: clamp(54px, 8vw, 124px);
+  grid-template-columns: minmax(180px, 0.42fr) 1fr;
+  min-height: 78vh;
+  padding-bottom: clamp(120px, 14vw, 210px);
+  padding-top: clamp(130px, 15vw, 220px);
+}
+
+.story-gate__label {
+  align-items: flex-start;
+  display: flex;
+  gap: 24px;
+}
+
+.story-gate__label .eyebrow {
+  margin-top: 8px;
+}
+
+.story-gate__prelude {
+  color: var(--moss);
+  font-family: var(--serif);
+  font-size: 17px;
+  font-style: italic;
+  margin: 0 0 34px;
+}
+
+.story-gate h2 {
+  font-size: clamp(58px, 7.3vw, 108px);
+  max-width: 980px;
+}
+
+.story-gate h2 em {
+  color: var(--clay);
+  font-weight: 400;
+}
+
+.story-gate__footer {
+  align-items: end;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 40px;
+  grid-template-columns: minmax(260px, 0.8fr) auto;
+  margin-top: clamp(58px, 7vw, 96px);
+  padding-top: 28px;
+}
+
+.story-gate__footer p {
+  color: #59635a;
+  font-size: 16px;
+  margin: 0;
+  max-width: 560px;
+}
+
+.story-gate__footer span {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
 .day-story {
   background: #122219;
   color: var(--cream);
@@ -972,11 +1036,13 @@ html.intro-first.page-loaded .page-intro {
 }
 
 .experience-card {
+  background: var(--forest);
   color: var(--white);
   display: flex;
   flex-direction: column;
+  isolation: isolate;
   justify-content: space-between;
-  min-height: 390px;
+  min-height: 540px;
   overflow: hidden;
   padding: 34px;
   position: relative;
@@ -987,21 +1053,70 @@ html.intro-first.page-loaded .page-intro {
   transform: translateY(-6px);
 }
 
-.experience-card::after {
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 50%;
-  content: "";
-  height: 220px;
-  position: absolute;
-  right: -75px;
-  top: -85px;
-  width: 220px;
+.experience-card:first-child {
+  min-height: 620px;
 }
 
-.experience-card > span {
+.experience-card__image,
+.experience-card__shade {
+  height: 100%;
+  inset: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.experience-card__image {
+  object-fit: cover;
+  transform: scale(1.01);
+  transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: -2;
+}
+
+.experience-card:hover .experience-card__image {
+  transform: scale(1.055);
+}
+
+.experience-card__shade {
+  background: linear-gradient(180deg, rgba(7, 15, 10, 0.18), rgba(7, 15, 10, 0.08) 40%, rgba(7, 15, 10, 0.82));
+  z-index: -1;
+}
+
+.experience-card__topline {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.experience-card__topline > span:first-child {
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.1em;
+}
+
+.experience-card__topline > span:last-child {
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  border-radius: 50%;
+  display: flex;
+  font-size: 16px;
+  height: 44px;
+  justify-content: center;
+  transition: background-color 220ms ease, color 220ms ease;
+  width: 44px;
+}
+
+.experience-card:hover .experience-card__topline > span:last-child {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.experience-card__copy {
+  transform: translateY(8px);
+  transition: transform 300ms ease;
+}
+
+.experience-card:hover .experience-card__copy {
+  transform: translateY(0);
 }
 
 .experience-card h3 {
@@ -1013,7 +1128,7 @@ html.intro-first.page-loaded .page-intro {
 }
 
 .experience-card p {
-  color: rgba(255, 255, 255, 0.74);
+  color: rgba(255, 255, 255, 0.8);
   font-size: 14px;
   margin: 18px 0 0;
   max-width: 300px;
@@ -1583,6 +1698,7 @@ html.intro-first.page-loaded .page-intro {
   .manifesto__body h2,
   .food-story h2,
   .stay h2,
+  .story-gate h2,
   .day-story h2,
   .day-story h3,
   .section-heading h2,
@@ -1631,6 +1747,19 @@ html.intro-first.page-loaded .page-intro {
     align-self: stretch;
   }
 
+  .story-gate {
+    gap: 52px;
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding-bottom: 110px;
+    padding-top: 110px;
+  }
+
+  .story-gate__footer {
+    align-items: start;
+    grid-template-columns: 1fr;
+  }
+
   .day-story {
     padding-left: 24px;
     padding-right: 24px;
@@ -1659,7 +1788,7 @@ html.intro-first.page-loaded .page-intro {
   }
 
   .experience-card {
-    min-height: 310px;
+    min-height: 430px;
   }
 
   .panorama {

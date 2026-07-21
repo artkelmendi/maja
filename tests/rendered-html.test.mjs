@@ -38,6 +38,8 @@ test("server-renders the Albanian restaurant site", async () => {
   assert.match(html, /data-reveal/);
   assert.match(html, /data-story-step="0"/);
   assert.match(html, /data-story-panel="2"/);
+  assert.match(html, /class="story-gate section-shell"/);
+  assert.match(html, /maja-horseback\.webp/);
   assert.match(html, /class="site-footer"/);
   assert.match(html, /Maja ju pret\./);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|react-loading-skeleton/i);
@@ -72,5 +74,8 @@ test("creates a self-contained GitHub Pages export", async () => {
     access(new URL("../docs/og.png", import.meta.url)),
     access(new URL("../docs/images/maja-food.webp", import.meta.url)),
     access(new URL("../docs/images/maja-room.webp", import.meta.url)),
+    access(new URL("../docs/images/maja-dining-dusk.webp", import.meta.url)),
+    access(new URL("../docs/images/maja-exterior-bluehour.webp", import.meta.url)),
+    access(new URL("../docs/images/maja-horseback.webp", import.meta.url)),
   ]);
 });

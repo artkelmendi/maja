@@ -26,18 +26,24 @@ const experiences = [
     title: "Shije me pamje",
     text: "Një tryezë e ngrohtë përballë horizontit të Strellcit.",
     className: "experience-card experience-card--forest",
+    image: "/images/maja-dining-dusk.webp",
+    alt: "Tryezë darke në tarracën malore në dritën e muzgut",
   },
   {
     index: "02",
     title: "Kalërim në natyrë",
     text: "Dilni përtej tarracës dhe përjetoni malin me ritmin e tij.",
     className: "experience-card experience-card--stone",
+    image: "/images/maja-horseback.webp",
+    alt: "Kalorës duke përshkuar një kreshtë të gjelbër malore",
   },
   {
     index: "03",
     title: "Natë e qetë",
     text: "Dhoma të ngrohta, ajër i pastër dhe mëngjes pa nxitim.",
     className: "experience-card experience-card--clay",
+    image: "/images/maja-exterior-bluehour.webp",
+    alt: "Pamje e restorantit malor të ndriçuar në mbrëmje",
   },
 ];
 
@@ -55,16 +61,16 @@ const dayChapters = [
     kicker: "Pasditja",
     title: "Uluni pranë tryezës.",
     text: "Shije vendi, biseda të gjata dhe një pamje që ndryshon me dritën. Këtu, dreka bëhet pjesë e udhëtimit.",
-    image: "/images/maja-hero.webp",
-    alt: "Tarraca e Majës me pamje të gjerë mbi malet e Strellcit",
+    image: "/images/maja-horseback.webp",
+    alt: "Dy kalorës duke ndjekur një shteg mbi kreshtat e Strellcit",
   },
   {
     index: "03",
     kicker: "Mbrëmja",
     title: "Qëndroni deri në mëngjes.",
     text: "Kur perëndon dielli, mali hesht. Një dhomë e ngrohtë ju pret që qetësia të zgjasë edhe pak.",
-    image: "/images/maja-room.webp",
-    alt: "Dhomë malore e ngrohtë me dru, gur dhe pamje nga natyra",
+    image: "/images/maja-exterior-bluehour.webp",
+    alt: "Restoranti malor i ndriçuar ngrohtë në orën blu",
   },
 ];
 
@@ -252,6 +258,28 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="story-gate section-shell" data-reveal aria-labelledby="story-gate-title">
+        <div className="story-gate__label">
+          <span className="section-number">03</span>
+          <p className="eyebrow">Ritmi i Majës</p>
+        </div>
+        <div className="story-gate__body">
+          <p className="story-gate__prelude">Ndaluni. Merrni frymë. Shikoni përtej.</p>
+          <h2 id="story-gate-title">
+            Këtu dita nuk është orar.
+            <br />
+            <em>Është një rrugëtim.</em>
+          </h2>
+          <div className="story-gate__footer">
+            <p>
+              Nga mëngjesi i freskët te darka nën yje, çdo moment ka pamjen,
+              shijen dhe qetësinë e vet.
+            </p>
+            <span aria-hidden="true">Vazhdoni poshtë ↓</span>
+          </div>
+        </div>
+      </section>
+
       <section className="day-story" id="historia" aria-labelledby="day-story-title">
         <div className="day-story__visual" aria-hidden="true">
           {dayChapters.map((chapter, index) => (
@@ -310,7 +338,7 @@ export default function Home() {
       <section className="experiences section-shell" id="pervoja" data-reveal>
         <div className="section-heading">
           <div>
-            <span className="section-number">03</span>
+            <span className="section-number">04</span>
             <p className="eyebrow">Më shumë se një vakt</p>
           </div>
           <h2>Një ditë në Majë.</h2>
@@ -320,21 +348,33 @@ export default function Home() {
         </div>
         <div className="experience-grid">
           {experiences.map((experience) => (
-            <article className={experience.className} key={experience.index}>
-              <span>{experience.index}</span>
-              <div>
+            <a className={experience.className} href="#kontakti" key={experience.index}>
+              <img
+                className="experience-card__image"
+                src={experience.image}
+                alt={experience.alt}
+                width="1536"
+                height="1024"
+                loading="lazy"
+              />
+              <div className="experience-card__shade" aria-hidden="true" />
+              <div className="experience-card__topline">
+                <span>{experience.index}</span>
+                <span aria-hidden="true">↗</span>
+              </div>
+              <div className="experience-card__copy">
                 <h3>{experience.title}</h3>
                 <p>{experience.text}</p>
               </div>
-            </article>
+            </a>
           ))}
         </div>
       </section>
 
       <section className="panorama" aria-label="Pamje nga Maja e Strellcit" data-reveal>
         <img
-          src="/images/maja-hero.webp"
-          alt="Horizont i gjerë malor i parë nga tarraca"
+          src="/images/maja-dining-dusk.webp"
+          alt="Tryezë e shtruar në tarracë gjatë muzgut malor"
           width="1536"
           height="968"
           loading="lazy"
