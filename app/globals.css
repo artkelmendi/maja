@@ -66,6 +66,105 @@ summary:focus-visible {
   color: var(--white);
 }
 
+.page-intro {
+  display: none;
+}
+
+html.intro-first,
+html.intro-first body {
+  overflow: hidden;
+}
+
+html.intro-first .page-intro {
+  align-items: center;
+  background: var(--ink);
+  color: var(--cream);
+  display: flex;
+  flex-direction: column;
+  inset: 0;
+  justify-content: center;
+  position: fixed;
+  z-index: 50;
+}
+
+.page-intro__mark {
+  align-items: center;
+  display: flex;
+  font-family: var(--serif);
+  font-size: clamp(22px, 3vw, 38px);
+  gap: 18px;
+  letter-spacing: 0.14em;
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.page-intro__peak {
+  border-bottom: 17px solid var(--cream);
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  height: 0;
+  width: 0;
+}
+
+.page-intro__line {
+  background: rgba(243, 239, 229, 0.5);
+  height: 1px;
+  margin-top: 26px;
+  transform: scaleX(0);
+  width: min(280px, 56vw);
+}
+
+.page-intro p {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  margin: 18px 0 0;
+  opacity: 0;
+  text-transform: uppercase;
+}
+
+html.intro-first.page-loaded .page-intro__mark {
+  animation: intro-mark 700ms cubic-bezier(0.22, 1, 0.36, 1) 140ms forwards;
+}
+
+html.intro-first.page-loaded .page-intro__line {
+  animation: intro-line 760ms cubic-bezier(0.22, 1, 0.36, 1) 430ms forwards;
+}
+
+html.intro-first.page-loaded .page-intro p {
+  animation: intro-copy 500ms ease 760ms forwards;
+}
+
+html.intro-first.page-loaded .page-intro {
+  animation: intro-exit 620ms cubic-bezier(0.7, 0, 0.3, 1) 1550ms forwards;
+}
+
+@keyframes intro-mark {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes intro-line {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes intro-copy {
+  to {
+    opacity: 0.72;
+  }
+}
+
+@keyframes intro-exit {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 .site-header {
   align-items: center;
   background: rgba(250, 248, 242, 0.94);
@@ -231,6 +330,46 @@ summary:focus-visible {
   max-width: 730px;
   position: absolute;
   z-index: 2;
+}
+
+.motion-enabled .hero__content > *,
+.motion-enabled .hero__meta,
+.motion-enabled .hero__note {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+.motion-enabled.page-loaded .hero__content > *,
+.motion-enabled.page-loaded .hero__meta,
+.motion-enabled.page-loaded .hero__note {
+  animation: hero-enter 780ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.motion-enabled.page-loaded .hero__content > :nth-child(2) {
+  animation-delay: 90ms;
+}
+
+.motion-enabled.page-loaded .hero__content > :nth-child(3) {
+  animation-delay: 180ms;
+}
+
+.motion-enabled.page-loaded .hero__content > :nth-child(4),
+.motion-enabled.page-loaded .hero__meta,
+.motion-enabled.page-loaded .hero__note {
+  animation-delay: 260ms;
+}
+
+.intro-first.motion-enabled.page-loaded .hero__content > *,
+.intro-first.motion-enabled.page-loaded .hero__meta,
+.intro-first.motion-enabled.page-loaded .hero__note {
+  animation-delay: 1650ms;
+}
+
+@keyframes hero-enter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .eyebrow {
@@ -874,23 +1013,15 @@ footer > div a:hover {
   color: #e0a45d;
 }
 
-@supports (animation-timeline: view()) {
-  [data-reveal] {
-    animation: section-reveal linear both;
-    animation-range: entry 8% cover 28%;
-    animation-timeline: view();
-  }
+.motion-enabled [data-reveal] {
+  opacity: 0;
+  transform: translateY(34px);
+  transition: opacity 760ms ease, transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
+}
 
-  @keyframes section-reveal {
-    from {
-      opacity: 0;
-      transform: translateY(24px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+.motion-enabled [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @media (max-width: 1100px) {
@@ -1211,5 +1342,17 @@ footer > div a:hover {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .page-intro {
+    display: none !important;
+  }
+
+  [data-reveal],
+  .hero__content > *,
+  .hero__meta,
+  .hero__note {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

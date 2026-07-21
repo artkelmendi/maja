@@ -1,3 +1,5 @@
+import { MotionController } from "./motion-controller";
+
 const reservationPhone = "+38349840222";
 
 const menuHighlights = [
@@ -54,6 +56,15 @@ function BrandMark({ light = false }: { light?: boolean }) {
 export default function Home() {
   return (
     <main id="fillimi">
+      <MotionController />
+      <div className="page-intro" aria-hidden="true">
+        <div className="page-intro__mark">
+          <span className="page-intro__peak" />
+          <span>MAJA E STRELLCIT</span>
+        </div>
+        <div className="page-intro__line" />
+        <p>Strellc · Kosovë</p>
+      </div>
       <header className="site-header" aria-label="Navigimi kryesor">
         <BrandMark />
         <nav className="desktop-nav" aria-label="Faqja">

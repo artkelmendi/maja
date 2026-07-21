@@ -53,6 +53,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="sq">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;var seen=sessionStorage.getItem('maja-intro-seen');if(!reduced&&!seen){document.documentElement.classList.add('intro-first');sessionStorage.setItem('maja-intro-seen','1');}}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body>{children}</body>
     </html>
   );
