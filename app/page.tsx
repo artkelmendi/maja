@@ -125,20 +125,30 @@ export default function Home() {
       </header>
 
       <section className="hero" aria-labelledby="hero-title">
-        <img
-          className="hero__image"
-          src="/images/maja-hero.webp"
-          alt="Tarracë malore me tryezë mëngjesi dhe pamje mbi bjeshkë"
-          width="1536"
-          height="968"
-          fetchPriority="high"
-        />
-        <div className="hero__wash" aria-hidden="true" />
+        <div className="hero__media">
+          <img
+            className="hero__image"
+            src="/images/maja-hero.webp"
+            alt="Tarracë malore me tryezë mëngjesi dhe pamje mbi bjeshkë"
+            width="1536"
+            height="968"
+            fetchPriority="high"
+          />
+          <div className="hero__wash" aria-hidden="true" />
+        </div>
+        <div className="hero__peak-field" aria-hidden="true">
+          <span className="hero__peak hero__peak--1" />
+          <span className="hero__peak hero__peak--2" />
+          <span className="hero__peak hero__peak--3" />
+          <span className="hero__peak hero__peak--4" />
+          <span className="hero__peak hero__peak--5" />
+          <span className="hero__peak hero__peak--6" />
+          <span className="hero__peak-wordmark">MAJA E STRELLCIT</span>
+        </div>
         <div className="hero__content">
           <p className="eyebrow eyebrow--light">Strellc · Kosovë</p>
           <h1 id="hero-title">
-            Mbi re.
-            <br />
+            <span>Mbi re.</span>
             <em>Afër rrënjëve.</em>
           </h1>
           <p className="hero__copy">
@@ -153,11 +163,11 @@ export default function Home() {
               Zbulo Majën <span aria-hidden="true">↓</span>
             </a>
           </div>
-        </div>
-        <div className="hero__meta" aria-label="Shërbimet kryesore">
-          <span>Restorant</span>
-          <span>Dhoma</span>
-          <span>Natyrë</span>
+          <div className="hero__meta" aria-label="Shërbimet kryesore">
+            <span>Restorant</span>
+            <span>Dhoma</span>
+            <span>Natyrë</span>
+          </div>
         </div>
         <p className="hero__note">Një ndalesë mbi përditshmërinë.</p>
       </section>
@@ -431,46 +441,37 @@ export default function Home() {
       </section>
 
       <footer className="site-footer">
-        <div className="site-footer__cta" data-reveal>
-          <div>
-            <p className="eyebrow eyebrow--light">Rezervoni momentin tuaj</p>
-            <h2>Maja ju pret.</h2>
-          </div>
-          <a className="site-footer__booking" href={`tel:${reservationPhone}`}>
-            <span>
-              <small>Na telefononi</small>
-              <strong>+383 (0)49 840 222</strong>
-            </span>
-            <b aria-hidden="true">↗</b>
-          </a>
-        </div>
-
-        <div className="site-footer__grid">
+        <div className="site-footer__main" data-reveal>
           <div className="site-footer__identity">
             <BrandMark light />
             <p>Restorant, natyrë dhe akomodim mbi Strellc.</p>
           </div>
-          <nav className="site-footer__nav" aria-label="Lidhjet në fund të faqes">
-            <p>Eksploroni</p>
-            <a href="#restoranti">Restoranti</a>
-            <a href="#akomodimi">Akomodimi</a>
-            <a href="#historia">Një ditë në Majë</a>
-            <a href="#pervoja">Përvoja</a>
-          </nav>
-          <address className="site-footer__address">
-            <p>Na gjeni</p>
+          <div className="site-footer__invitation">
+            <p className="eyebrow eyebrow--light">Gati për pak ajër?</p>
+            <h2>Shihemi në Majë.</h2>
+            <p>Një tavolinë, një dhomë ose thjesht pak qetësi — na telefononi.</p>
+            <div className="site-footer__actions">
+              <a className="button button--cream" href={`tel:${reservationPhone}`}>
+                Rezervo tani <span aria-hidden="true">↗</span>
+              </a>
+              <a
+                className="site-footer__direction"
+                href="https://maps.app.goo.gl/UHRxLucJr8S1TVqx8?g_st=com.google.maps.preview.copy"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Si të vini ↗
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="site-footer__bar">
+          <address>
             <span>Strellc, Kosovë</span>
             <a href={`tel:${reservationPhone}`}>+383 (0)49 840 222</a>
-            <a
-              href="https://maps.app.goo.gl/UHRxLucJr8S1TVqx8?g_st=com.google.maps.preview.copy"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Hap lokacionin ↗
-            </a>
           </address>
-          <div className="site-footer__social">
-            <p>Na ndiqni</p>
+          <nav aria-label="Lidhjet në fund të faqes">
             <a
               href="https://www.instagram.com/restaurant.majaestrellcit/"
               target="_blank"
@@ -478,22 +479,24 @@ export default function Home() {
             >
               Instagram ↗
             </a>
-            <span>@restaurant.majaestrellcit</span>
-          </div>
-        </div>
-
-        <div className="site-footer__wordmark" aria-hidden="true">
-          MAJA E STRELLCIT
-        </div>
-
-        <div className="site-footer__bottom">
-          <span>© 2026 Maja e Strellcit</span>
-          <span>Me rrënjë në Strellc, Kosovë</span>
+            <a
+              href="https://maps.app.goo.gl/UHRxLucJr8S1TVqx8?g_st=com.google.maps.preview.copy"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Lokacioni ↗
+            </a>
+          </nav>
           <a className="site-footer__top" href="#fillimi" aria-label="Kthehu në fillim">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 19V5M6.5 10.5 12 5l5.5 5.5" />
             </svg>
           </a>
+        </div>
+
+        <div className="site-footer__bottom">
+          <span>© 2026 Maja e Strellcit</span>
+          <span>Restorant · Akomodim · Natyrë</span>
         </div>
       </footer>
     </main>

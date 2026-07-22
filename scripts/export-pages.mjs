@@ -10,9 +10,25 @@ if (path.dirname(docs) !== root) {
   throw new Error("Refusing to write outside the project directory.");
 }
 
-const response = await fetch("http://localhost:3000/");
+const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+workerUrl.searchParams.set("export", String(Date.now()));
+const { default: worker } = await import(workerUrl.href);
+const response = await worker.fetch(
+  new Request("http://localhost/", {
+    headers: { accept: "text/html" },
+  }),
+  {
+    ASSETS: {
+      fetch: async () => new Response("Not found", { status: 404 }),
+    },
+  },
+  {
+    waitUntil() {},
+    passThroughOnException() {},
+  },
+);
 if (!response.ok) {
-  throw new Error(`Local site returned ${response.status}.`);
+  throw new Error(`Built site returned ${response.status}.`);
 }
 
 let html = await response.text();

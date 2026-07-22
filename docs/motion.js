@@ -11,6 +11,22 @@
     document.querySelectorAll("[data-story-panel]"),
   );
   var storyCurrent = document.querySelector("[data-story-current]");
+  var mobileNav = document.querySelector(".mobile-nav");
+  var mobileNavLinks = Array.prototype.slice.call(
+    document.querySelectorAll(".mobile-nav nav a"),
+  );
+
+  function closeMobileNav() {
+    if (mobileNav) mobileNav.open = false;
+  }
+
+  mobileNavLinks.forEach(function (link) {
+    link.addEventListener("click", closeMobileNav);
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") closeMobileNav();
+  });
 
   if (reducedMotion) {
     root.classList.add("motion-reduced", "intro-complete");

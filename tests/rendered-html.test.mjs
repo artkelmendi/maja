@@ -41,7 +41,11 @@ test("server-renders the Albanian restaurant site", async () => {
   assert.match(html, /class="story-gate section-shell"/);
   assert.match(html, /maja-horseback\.webp/);
   assert.match(html, /class="site-footer"/);
-  assert.match(html, /Maja ju pret\./);
+  assert.match(html, /class="hero__peak-field"/);
+  assert.match(html, /hero__peak--6/);
+  assert.match(html, /Shihemi në Majë\./);
+  assert.match(html, /site-footer__invitation/);
+  assert.doesNotMatch(html, /site-footer__wordmark/);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|react-loading-skeleton/i);
 });
 
@@ -64,9 +68,13 @@ test("creates a self-contained GitHub Pages export", async () => {
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(css, /day-story__visual/);
   assert.match(css, /position:\s*sticky/);
+  assert.match(css, /@keyframes hero-peak-rise/);
+  assert.match(css, /@media\s*\((?:max-width:\s*900px|width<=900px)\)/);
+  assert.match(css, /scroll-snap-type:\s*x mandatory/);
   assert.match(motion, /IntersectionObserver/);
   assert.match(motion, /prefers-reduced-motion/);
   assert.match(motion, /data-story-panel/);
+  assert.match(motion, /closeMobileNav/);
 
   await Promise.all([
     access(new URL("../docs/.nojekyll", import.meta.url)),

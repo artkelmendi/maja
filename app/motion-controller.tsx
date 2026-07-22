@@ -18,11 +18,29 @@ export function MotionController() {
       document.querySelectorAll<HTMLElement>("[data-story-panel]"),
     );
     const storyCurrent = document.querySelector<HTMLElement>("[data-story-current]");
+    const mobileNav = document.querySelector<HTMLDetailsElement>(".mobile-nav");
+    const mobileNavLinks = Array.from(
+      document.querySelectorAll<HTMLAnchorElement>(".mobile-nav nav a"),
+    );
+    const closeMobileNav = () => {
+      if (mobileNav) mobileNav.open = false;
+    };
+    const closeMobileNavOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeMobileNav();
+    };
+
+    mobileNavLinks.forEach((link) => link.addEventListener("click", closeMobileNav));
+    document.addEventListener("keydown", closeMobileNavOnEscape);
 
     if (reducedMotion) {
       root.classList.add("motion-reduced", "intro-complete");
       revealTargets.forEach((target) => target.classList.add("is-visible"));
-      return;
+      return () => {
+        mobileNavLinks.forEach((link) =>
+          link.removeEventListener("click", closeMobileNav),
+        );
+        document.removeEventListener("keydown", closeMobileNavOnEscape);
+      };
     }
 
     root.classList.add("motion-enabled");
@@ -89,6 +107,10 @@ export function MotionController() {
       observer.disconnect();
       storyObserver.disconnect();
       window.clearTimeout(introTimer);
+      mobileNavLinks.forEach((link) =>
+        link.removeEventListener("click", closeMobileNav),
+      );
+      document.removeEventListener("keydown", closeMobileNavOnEscape);
     };
   }, []);
 
