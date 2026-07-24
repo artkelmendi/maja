@@ -43,6 +43,8 @@ test("server-renders the Albanian restaurant site", async () => {
   assert.match(html, /class="site-footer"/);
   assert.match(html, /class="hero__peak-field"/);
   assert.match(html, /hero__peak--6/);
+  assert.match(html, /class="ui-arrow"/);
+  assert.match(html, /class="motion-ridge"/);
   assert.match(html, /Shihemi në Majë\./);
   assert.match(html, /site-footer__invitation/);
   assert.doesNotMatch(html, /site-footer__wordmark/);
@@ -69,6 +71,10 @@ test("creates a self-contained GitHub Pages export", async () => {
   assert.match(css, /day-story__visual/);
   assert.match(css, /position:\s*sticky/);
   assert.match(css, /@keyframes hero-peak-rise/);
+  assert.match(css, /@keyframes hero-ambient-drift/);
+  assert.match(css, /@keyframes image-cinematic-settle/);
+  assert.match(css, /44svh/);
+  assert.match(css, /\.ui-arrow/);
   assert.match(css, /@media\s*\((?:max-width:\s*900px|width<=900px)\)/);
   assert.match(css, /scroll-snap-type:\s*x mandatory/);
   assert.match(motion, /IntersectionObserver/);

@@ -107,7 +107,7 @@ export default function Home() {
           <a href="#kontakti">Kontakti</a>
         </nav>
         <a className="header-cta" href={`tel:${reservationPhone}`}>
-          Rezervo <span aria-hidden="true">↗</span>
+          Rezervo <span className="ui-arrow" aria-hidden="true">↗</span>
         </a>
         <details className="mobile-nav">
           <summary aria-label="Hap menunë">
@@ -157,10 +157,10 @@ export default function Home() {
           </p>
           <div className="hero__actions">
             <a className="button button--cream" href={`tel:${reservationPhone}`}>
-              Rezervo përvojën <span aria-hidden="true">↗</span>
+              Rezervo përvojën <span className="ui-arrow" aria-hidden="true">↗</span>
             </a>
             <a className="text-link text-link--light" href="#restoranti">
-              Zbulo Majën <span aria-hidden="true">↓</span>
+              Zbulo Majën <span className="ui-arrow" aria-hidden="true">↓</span>
             </a>
           </div>
           <div className="hero__meta" aria-label="Shërbimet kryesore">
@@ -198,6 +198,9 @@ export default function Home() {
               <span>Gatim i pastër, pa teprime</span>
             </div>
           </div>
+          <div className="motion-ridge" aria-hidden="true">
+            <i /><i /><i /><i />
+          </div>
         </div>
       </section>
 
@@ -230,7 +233,7 @@ export default function Home() {
             ))}
           </div>
           <a className="button button--ink" href={`tel:${reservationPhone}`}>
-            Rezervo një tryezë <span aria-hidden="true">↗</span>
+            Rezervo një tryezë <span className="ui-arrow" aria-hidden="true">↗</span>
           </a>
         </div>
       </section>
@@ -263,7 +266,7 @@ export default function Home() {
             <span>Ambient i qetë</span>
           </div>
           <a className="button button--outline" href={`tel:${reservationPhone}`}>
-            Pyet për dhomat <span aria-hidden="true">↗</span>
+            Pyet për dhomat <span className="ui-arrow" aria-hidden="true">↗</span>
           </a>
         </div>
       </section>
@@ -285,12 +288,21 @@ export default function Home() {
               Nga mëngjesi i freskët te darka nën yje, çdo moment ka pamjen,
               shijen dhe qetësinë e vet.
             </p>
-            <span aria-hidden="true">Vazhdoni poshtë ↓</span>
+            <span>
+              Vazhdoni poshtë <span className="ui-arrow" aria-hidden="true">↓</span>
+            </span>
+          </div>
+          <div className="motion-ridge motion-ridge--clay" aria-hidden="true">
+            <i /><i /><i /><i />
           </div>
         </div>
       </section>
 
       <section className="day-story" id="historia" aria-labelledby="day-story-title">
+        <header className="day-story__heading">
+          <p className="eyebrow eyebrow--light">Nga agimi deri te yjet</p>
+          <h2 id="day-story-title">Një ditë që ecën me ritmin e malit.</h2>
+        </header>
         <div className="day-story__visual" aria-hidden="true">
           {dayChapters.map((chapter, index) => (
             <div
@@ -313,10 +325,6 @@ export default function Home() {
         </div>
 
         <div className="day-story__chapters">
-          <header className="day-story__heading">
-            <p className="eyebrow eyebrow--light">Nga agimi deri te yjet</p>
-            <h2 id="day-story-title">Një ditë që ecën me ritmin e malit.</h2>
-          </header>
           {dayChapters.map((chapter, index) => (
             <article
               className={`day-story__chapter${index === 0 ? " is-active" : ""}`}
@@ -370,7 +378,7 @@ export default function Home() {
               <div className="experience-card__shade" aria-hidden="true" />
               <div className="experience-card__topline">
                 <span>{experience.index}</span>
-                <span aria-hidden="true">↗</span>
+                <span className="ui-arrow" aria-hidden="true">↗</span>
               </div>
               <div className="experience-card__copy">
                 <h3>{experience.title}</h3>
@@ -411,7 +419,7 @@ export default function Home() {
               <small>Rezervime</small>
               <strong>+383 (0)49 840 222</strong>
             </span>
-            <b aria-hidden="true">↗</b>
+            <b className="ui-arrow" aria-hidden="true">↗</b>
           </a>
           <a
             className="contact-row"
@@ -423,7 +431,7 @@ export default function Home() {
               <small>Lokacioni</small>
               <strong>Strellc, Kosovë</strong>
             </span>
-            <b aria-hidden="true">↗</b>
+            <b className="ui-arrow" aria-hidden="true">↗</b>
           </a>
           <a
             className="contact-row"
@@ -435,7 +443,7 @@ export default function Home() {
               <small>Instagram</small>
               <strong>@restaurant.majaestrellcit</strong>
             </span>
-            <b aria-hidden="true">↗</b>
+            <b className="ui-arrow" aria-hidden="true">↗</b>
           </a>
         </div>
       </section>
@@ -452,7 +460,7 @@ export default function Home() {
             <p>Një tavolinë, një dhomë ose thjesht pak qetësi — na telefononi.</p>
             <div className="site-footer__actions">
               <a className="button button--cream" href={`tel:${reservationPhone}`}>
-                Rezervo tani <span aria-hidden="true">↗</span>
+                Rezervo tani <span className="ui-arrow" aria-hidden="true">↗</span>
               </a>
               <a
                 className="site-footer__direction"
@@ -460,7 +468,7 @@ export default function Home() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Si të vini ↗
+                Si të vini <span className="ui-arrow" aria-hidden="true">↗</span>
               </a>
             </div>
           </div>
@@ -477,14 +485,14 @@ export default function Home() {
               target="_blank"
               rel="noreferrer"
             >
-              Instagram ↗
+              Instagram <span className="ui-arrow" aria-hidden="true">↗</span>
             </a>
             <a
               href="https://maps.app.goo.gl/UHRxLucJr8S1TVqx8?g_st=com.google.maps.preview.copy"
               target="_blank"
               rel="noreferrer"
             >
-              Lokacioni ↗
+              Lokacioni <span className="ui-arrow" aria-hidden="true">↗</span>
             </a>
           </nav>
           <a className="site-footer__top" href="#fillimi" aria-label="Kthehu në fillim">
